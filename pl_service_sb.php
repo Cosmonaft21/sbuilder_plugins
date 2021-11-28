@@ -81,7 +81,7 @@ function fServiceSb()
             // close cURL resource, and free up system resources
             curl_close($ch);
 
-            $fp = fopen(SB_CMS_PL_PATH. '/own/pl_service_sb.php', 'w');
+            $fp = fopen(SB_CMS_PL_PATH. '/own/pl_service_sb/pl_service_sb.php', 'w');
             fwrite($fp, $out);
             fclose($fp);
         }
