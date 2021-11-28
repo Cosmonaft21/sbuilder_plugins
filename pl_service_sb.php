@@ -33,7 +33,7 @@ function fServiceSb()
 //    array('url' => 'search_content_pages', 'title' => 'Поиск контента на страницах'),
 //    array('url' => 'exec_moduls', 'title' => 'Запуск системных модулей из крона'),
 //    array('url' => 'page_404', 'title' => 'Вывод 404 ошибки'),
-    array('url' => 'file_content', 'title' => 'Контент файла'),
+        array('url' => 'file_content', 'title' => 'Контент файла'),
 //    array('url' => 'soap_test', 'title' => 'Тест SOAP'),
 //    // array('url' => 'create_symlink', 'title' => 'Создаем симлинк'),
 //    array('url' => 'change_domain', 'title' => 'Смена доменного имени в файлах'),
@@ -81,9 +81,14 @@ function fServiceSb()
             // close cURL resource, and free up system resources
             curl_close($ch);
 
-            $fp = fopen(SB_CMS_PL_PATH. '/own/pl_service_sb/pl_service_sb.php', 'w');
+            $fp = fopen(SB_CMS_PL_PATH . '/own/pl_service_sb/pl_service_sb.php', 'w');
             fwrite($fp, $out);
             fclose($fp);
+            ?>
+            <script>
+                window.parent.location = window.parent.location;
+            </script>
+            <?php
         }
         if ($_GET['events'] == 'design_layouts') {
             ?>
@@ -729,7 +734,7 @@ function fServiceSb()
                 }
             }
 
-            $t = new Texts(isset($_POST['path'])&&$_POST['path']==1);
+            $t = new Texts(isset($_POST['path']) && $_POST['path'] == 1);
             if (isset($_POST['text_id'])) $t->textID($_POST['text_id']);
             if (isset($_POST['text'])) $t->texts_text($_POST['text']);
             $t->info();
@@ -2887,7 +2892,8 @@ function fServiceSb()
                 <input type="text" name="layout_name"
                        value="<?= (isset($_POST['layout_name'])) ? $_POST['layout_name'] : '' ?>"
                        placeholder="Название шаблона"><br>
-                <input type="text" name="layout_id" value="<?= (isset($_POST['layout_id'])) ? $_POST['layout_id'] : '' ?>"
+                <input type="text" name="layout_id"
+                       value="<?= (isset($_POST['layout_id'])) ? $_POST['layout_id'] : '' ?>"
                        placeholder="ID шаблона"><br>
                 <textarea name="text"
                           placeholder="Текст шаблона"><?= (isset($_POST['text'])) ? $_POST['text'] : ''; ?></textarea><br>
@@ -3003,7 +3009,7 @@ function fServiceSb()
                 }
             }
 
-            $t = new Templates(isset($_POST['path'])&&$_POST['path']==1);
+            $t = new Templates(isset($_POST['path']) && $_POST['path'] == 1);
             if (isset($_POST['layout_name'])) $t->templatesName($_POST['layout_name']);
             if (isset($_POST['layout_id'])) $t->templatesID($_POST['layout_id']);
             if (isset($_POST['text'])) $t->templates_text($_POST['text']);
