@@ -4,6 +4,7 @@ function fServiceSb()
 {
 // Построение меню
     $a_menu = array(
+        array('url' => 'self_update', 'title' => 'Обновить скрипт'),
         array('url' => 'pages', 'title' => 'Поиск страницы'),
         array('url' => 'cats', 'title' => 'Поиск раздела'),
         array('url' => 'text', 'title' => 'Поиск текстового блока'),
@@ -61,6 +62,28 @@ function fServiceSb()
             ?>
             <h1>Контент</h1>
             <?php
+        }
+
+        if ($_GET['events'] == 'self_update') {
+            $file = 'https://raw.githubusercontent.com/Cosmonaft21/sbuilder_plugins/main/pl_service_sb.php';
+
+            // create a new cURL resource
+            $ch = curl_init();
+
+            // set URL and other appropriate options
+            curl_setopt($ch, CURLOPT_URL, $file);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+
+            // grab URL and pass it to the browser
+            $out = curl_exec($ch);
+
+            // close cURL resource, and free up system resources
+            curl_close($ch);
+
+            $fp = fopen(SB_CMS_PL_PATH. '/own/pl_service_sb.php', 'w');
+            fwrite($fp, $out);
+            fclose($fp);
         }
         if ($_GET['events'] == 'design_layouts') {
             ?>
