@@ -33,7 +33,7 @@ function fServiceSb()
 //    array('url' => 'search_content_pages', 'title' => 'Поиск контента на страницах'),
 //    array('url' => 'exec_moduls', 'title' => 'Запуск системных модулей из крона'),
 //    array('url' => 'page_404', 'title' => 'Вывод 404 ошибки'),
-//    array('url' => 'file_content', 'title' => 'Контент файла'),
+    array('url' => 'file_content', 'title' => 'Контент файла'),
 //    array('url' => 'soap_test', 'title' => 'Тест SOAP'),
 //    // array('url' => 'create_symlink', 'title' => 'Создаем симлинк'),
 //    array('url' => 'change_domain', 'title' => 'Смена доменного имени в файлах'),
